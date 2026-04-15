@@ -115,6 +115,8 @@ function createWindow() {
     },
   });
 
+  mainWindow.setIcon(path.join(__dirname, 'build', 'icon.ico'));
+
   mainWindow.once("ready-to-show", () => {
     mainWindow.show();
   });
