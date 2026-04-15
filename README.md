@@ -29,7 +29,6 @@
 ## ⛓️‍💥 Known issues and future work
 
 * A transaction archive will be added in the future (Transactions after 30 days are not included in the balance)
-* **Arithmos.exe** has a default icon.
 
 ---
 ## 📸Screenshots
