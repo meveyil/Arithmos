@@ -38,6 +38,7 @@
       "main.js",
       "preload.js",
       "out/**/*",
+      "build/**/*",
       "!node_modules/**/*",
       "!.next/**/*",
       "!.git/**/*"

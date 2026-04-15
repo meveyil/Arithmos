@@ -32,33 +32,25 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-      <meta 
-  httpEquiv="Content-Security-Policy" 
-  content="
-    default-src 'self'; 
-    script-src 'self'; 
-    style-src 'self' 'unsafe-inline'; 
-    connect-src 'none'; 
-    object-src 'none'; 
-    frame-src 'none';
-    base-uri 'self';
-    form-action 'self';
-  " 
-/>
-       <meta 
-  httpEquiv="Content-Security-Policy" 
-  content="
-    default-src 'self'; 
-    script-src 'self' 'unsafe-inline' 'unsafe-eval'; 
-    style-src 'self' 'unsafe-inline'; 
-    connect-src 'self' ws://localhost:3000 http://localhost:3000;
-    img-src 'self' blob: data:;
-  " 
-/>
+        {/* Универсальный CSP: разрешает скрипты Next.js и работу через протокол file:// */}
+        <meta 
+          httpEquiv="Content-Security-Policy" 
+          content="
+            default-src 'self' file: data:; 
+            script-src 'self' 'unsafe-inline' 'unsafe-eval' file:; 
+            style-src 'self' 'unsafe-inline' file:; 
+            connect-src 'self' ws://localhost:3000 http://localhost:3000 file:; 
+            img-src 'self' blob: data: file:;
+            font-src 'self' data: file:;
+            object-src 'none';
+          " 
+        />
       </head>
       <body className="min-h-full">
         <SettingsProvider>
-          <FinanceProvider>{children}</FinanceProvider>
+          <FinanceProvider>
+            {children}
+          </FinanceProvider>
         </SettingsProvider>
       </body>
     </html>
