@@ -1,0 +1,90 @@
+{
+  "name": "arithmos",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Личные финансы (Arithmos)",
+  "author": "meveyil",
+  "main": "main.js",
+  "scripts": {
+    "electron": "electron .",
+    "dev": "next dev",
+    "build": "next build && node scripts/patch-electron-export.cjs",
+    "dist": "npm run build && electron-builder",
+    "dist:dir": "npm run build && electron-builder --dir",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "build": {
+    "appId": "com.arithmos",
+    "productName": "Arithmos",
+    "copyright": "Copyright © 2026",
+    "forceCodeSigning": false,
+    "directories": {
+      "output": "release",
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true, 
+    "installerIcon": "build/icon.ico", 
+    "uninstallerIcon": "build/icon.ico", 
+    "uninstallDisplayName": "Arithmos",
+    "createDesktopShortcut": true, 
+    "createStartMenuShortcut": true, 
+    "shortcutName": "Arithmos",
+    "runAfterFinish": true
+    },
+    "files": [
+      "package.json",
+      "main.js",
+      "preload.js",
+      "out/**/*",
+      "!node_modules/**/*",
+      "!.next/**/*",
+      "!.git/**/*"
+    ],
+    "asar": true,
+    "extraMetadata": {
+      "main": "main.js"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "executableName": "Arithmos",
+      "signAndEditExecutable": false
+    },
+    "mac": {
+      "category": "public.app-category.finance",
+      "target": [
+        "dmg"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    }
+  },
+  "dependencies": {
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.8.0",
+    "next": "16.2.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "recharts": "^3.8.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "babel-plugin-react-compiler": "1.0.0",
+    "electron": "^41.2.0",
+    "electron-builder": "^26.0.12",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.3",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
