@@ -56,7 +56,7 @@
         }
       ],
       "executableName": "Arithmos",
-      "signAndEditExecutable": false
+      "signAndEditExecutable": true
     },
     "mac": {
       "category": "public.app-category.finance",
