@@ -26,3 +26,25 @@
 * **Icons:** [Lucide React](https://lucide.dev/)
 
 ---
+## ⛓️‍💥 Known issues and future work
+
+* A transaction archive will be added in the future (Transactions after 30 days are not included in the balance)
+* **Arithmos.exe** has a default icon.
+
+---
+## 📸Screenshots
+<img width="1200" height="845" alt="изображение" src="https://github.com/user-attachments/assets/000dafc0-bb7f-4e2c-ae78-4b3aa51d7693" />
+
+<img width="1200" height="845" alt="изображение" src="https://github.com/user-attachments/assets/9617f321-8a0c-4092-8213-b8c53f50cfe4" />
+
+<img width="1200" height="845" alt="изображение" src="https://github.com/user-attachments/assets/a4333a7d-b436-4edf-a44f-2f31e7bea31c" />
+
+<img width="1200" height="845" alt="изображение" src="https://github.com/user-attachments/assets/ccdab59b-d70f-4bd6-96d0-5a50be9771da" />
+
+<img width="1200" height="845" alt="изображение" src="https://github.com/user-attachments/assets/1f8a6ec3-20c6-4800-9f13-a7f9e86f2e8d" />
+
+
+
+
+
+
