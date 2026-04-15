@@ -47,12 +47,15 @@
       "main": "main.js"
     },
     "win": {
-      "target": [
-        "nsis"
+      "icon": "build/icon.ico",
+     "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
       ],
       "executableName": "Arithmos",
-      "signAndEditExecutable": false,
-      "icon": "build/icon.ico"
+      "signAndEditExecutable": false
     },
     "mac": {
       "category": "public.app-category.finance",
