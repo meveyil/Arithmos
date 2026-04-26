@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDownLeft, ArrowUpRight, Trash2 } from "lucide-react";
+import { Archive, ArrowDownLeft, ArrowUpRight, Trash2 } from "lucide-react";
 import { createElement, memo, useCallback } from "react";
 import { ClientDateTime } from "@/components/client-datetime";
 import type { Transaction } from "@/components/finance-provider";
@@ -19,10 +19,12 @@ const rowVariants = {
 export const TransactionListRow = memo(function TransactionListRow({
   transaction: tr,
   use24Hour,
+  onArchive,
   onDelete,
 }: {
   transaction: Transaction;
   use24Hour: boolean;
+  onArchive: (id: string) => void;
   onDelete: (id: string) => void;
 }) {
   const { locale, currency } = useSettings();
@@ -32,10 +34,14 @@ export const TransactionListRow = memo(function TransactionListRow({
     onDelete(tr.id);
   }, [onDelete, tr.id]);
 
+  const handleArchive = useCallback(() => {
+    onArchive(tr.id);
+  }, [onArchive, tr.id]);
+
   return (
     <motion.li
       variants={rowVariants}
-      className="flex items-center gap-3 px-5 py-4 sm:gap-4"
+      className="flex flex-wrap items-center gap-3 px-5 py-4 sm:gap-4"
     >
       <div
         className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
@@ -77,19 +83,31 @@ export const TransactionListRow = memo(function TransactionListRow({
             : "text-zinc-900 dark:text-zinc-100"
         }`}
       >
-        {tr.type === "income" ? "+" : "−"}
+        {tr.type === "income" ? "+" : "-"}
         {formatMoney(tr.amount, locale, currency)}
       </p>
-      <motion.button
-        type="button"
-        aria-label={`${t.transactionRow.deleteAria}: ${tr.description}`}
-        onClick={handleDelete}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.92 }}
-        className="shrink-0 rounded-lg p-2 text-zinc-400/70 transition hover:bg-rose-500/10 hover:text-rose-600 dark:text-zinc-500 dark:hover:bg-rose-500/15 dark:hover:text-rose-400"
-      >
-        <Trash2 className="h-4 w-4" strokeWidth={1.75} />
-      </motion.button>
+      <div className="ml-auto flex shrink-0 items-center gap-1.5 max-sm:w-full max-sm:justify-end">
+        <motion.button
+          type="button"
+          onClick={handleArchive}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.97 }}
+          className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-zinc-200/90 px-3 py-2 text-xs font-medium text-zinc-700 transition hover:bg-zinc-100/90 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800/70"
+        >
+          <Archive className="h-3.5 w-3.5" strokeWidth={1.75} />
+          {t.archive.sendToArchive}
+        </motion.button>
+        <motion.button
+          type="button"
+          aria-label={`${t.transactionRow.deleteAria}: ${tr.description}`}
+          onClick={handleDelete}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.92 }}
+          className="shrink-0 rounded-lg p-2 text-zinc-400/70 transition hover:bg-rose-500/10 hover:text-rose-600 dark:text-zinc-500 dark:hover:bg-rose-500/15 dark:hover:text-rose-400"
+        >
+          <Trash2 className="h-4 w-4" strokeWidth={1.75} />
+        </motion.button>
+      </div>
     </motion.li>
   );
 });

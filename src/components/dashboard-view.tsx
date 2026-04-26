@@ -48,7 +48,12 @@ const item = {
 };
 
 export function DashboardView() {
-  const { balance, totalIncome, totalExpense, transactions } = useFinance();
+  const {
+    balance,
+    totalIncome,
+    totalExpense,
+    activeTransactions,
+  } = useFinance();
   const { locale, currency } = useSettings();
   const { t } = useI18n();
 
@@ -128,7 +133,7 @@ export function DashboardView() {
             <SpendingChart />
           </div>
         </GlassCard>
-        <CategoryExpenseRank transactions={transactions} />
+        <CategoryExpenseRank transactions={activeTransactions} />
       </motion.div>
     </motion.div>
   );

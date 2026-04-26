@@ -12,7 +12,7 @@ import { CATEGORY_OTHER, normalizeCategoryKey } from "@/lib/category-keys";
 import { toDatetimeLocalValue } from "@/lib/datetime-local";
 import { formatMoney } from "@/lib/format-money";
 import type { AppLocale, Messages } from "@/lib/i18n";
-import { interpolate, translateDefaultTemplateName } from "@/lib/i18n";
+import { translateDefaultTemplateName } from "@/lib/i18n";
 import { useI18n } from "@/lib/use-i18n";
 
 function templateChipLabel(template: TransactionTemplate, messages: Messages): string {
@@ -48,7 +48,7 @@ export function AddTransactionModal({
 }: {
   open: boolean;
   onClose: () => void;
-  onAdd: (t: Omit<Transaction, "id">) => void;
+  onAdd: (t: Omit<Transaction, "id" | "isManuallyRestored">) => void;
 }) {
   const { use24Hour, templates, locale, currency } = useSettings();
   const { t } = useI18n();
@@ -113,12 +113,6 @@ export function AddTransactionModal({
     },
     [amount, category, date, description, icon, onAdd, onClose, type],
   );
-
-  const templateHintText = interpolate(t.addTransaction.templateHint, {
-    hourMode: use24Hour
-      ? t.addTransaction.hourMode24
-      : t.addTransaction.hourMode12,
-  });
 
   return (
     <AnimatePresence>

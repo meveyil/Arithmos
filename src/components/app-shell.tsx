@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import { ArchiveView } from "@/components/archive-view";
 import { DashboardView } from "@/components/dashboard-view";
 import { OnboardingModal } from "@/components/onboarding-modal";
 import { SettingsView } from "@/components/settings-view";
@@ -49,6 +50,18 @@ export function AppShell() {
                 transition={panelTransition}
               >
                 <TransactionsView />
+              </motion.div>
+            )}
+            {section === "archive" && (
+              <motion.div
+                key="archive"
+                className="absolute inset-0 flex flex-col"
+                initial={{ opacity: 0, x: 12 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -12 }}
+                transition={panelTransition}
+              >
+                <ArchiveView />
               </motion.div>
             )}
             {section === "templates" && (

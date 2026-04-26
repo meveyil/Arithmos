@@ -23,5 +23,6 @@ export function parseTransactionRecord(raw: unknown): Transaction | null {
       typeof r.category === "string" ? r.category : CATEGORY_OTHER,
     ),
     icon: typeof r.icon === "string" ? r.icon : "Tag",
+    isManuallyRestored: r.isManuallyRestored === true,
   };
 }

@@ -1,12 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Plus, Search } from "lucide-react";
+import { Archive, Plus, Search } from "lucide-react";
 import { useCallback, useMemo, useState } from "react";
 import { AddTransactionModal } from "@/components/add-transaction-modal";
+import { ConfirmationDialog } from "@/components/confirmation-dialog";
 import { GlassCard } from "@/components/glass-card";
-import { TransactionListRow } from "@/components/transaction-list-row";
-import { useFinance } from "@/components/finance-provider";
+import {
+  TransactionListRow,
+} from "@/components/transaction-list-row";
+import {
+  type Transaction,
+  useFinance,
+} from "@/components/finance-provider";
 import { useSettings } from "@/components/settings-provider";
 import { normalizeCategoryKey } from "@/lib/category-keys";
 import { translateCategory } from "@/lib/i18n";
@@ -24,13 +30,19 @@ type TypeFilter = "all" | "income" | "expense";
 type SortMode = "dateDesc" | "dateAsc" | "amountDesc" | "amountAsc";
 
 export function TransactionsView() {
-  const { transactions, addTransaction, deleteTransaction } = useFinance();
+  const {
+    activeTransactions,
+    addTransaction,
+    archiveTransaction,
+    deleteTransaction,
+  } = useFinance();
   const { use24Hour } = useSettings();
   const { t } = useI18n();
   const [modalOpen, setModalOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState<TypeFilter>("all");
   const [sortMode, setSortMode] = useState<SortMode>("dateDesc");
+  const [pendingArchive, setPendingArchive] = useState<Transaction | null>(null);
 
   const handleDelete = useCallback(
     (id: string) => {
@@ -39,9 +51,15 @@ export function TransactionsView() {
     [deleteTransaction],
   );
 
+  const handleArchiveRequest = useCallback((id: string) => {
+    setPendingArchive(
+      activeTransactions.find((transaction) => transaction.id === id) ?? null,
+    );
+  }, [activeTransactions]);
+
   const filteredSorted = useMemo(() => {
     const q = search.trim().toLowerCase();
-    let list = transactions.filter((tr) => {
+    let list = activeTransactions.filter((tr) => {
       if (typeFilter === "income" && tr.type !== "income") return false;
       if (typeFilter === "expense" && tr.type !== "expense") return false;
       if (!q) return true;
@@ -70,7 +88,7 @@ export function TransactionsView() {
     });
 
     return list;
-  }, [transactions, search, typeFilter, sortMode, t]);
+  }, [activeTransactions, search, typeFilter, sortMode, t]);
 
   return (
     <>
@@ -169,6 +187,7 @@ export function TransactionsView() {
                 key={tr.id}
                 transaction={tr}
                 use24Hour={use24Hour}
+                onArchive={handleArchiveRequest}
                 onDelete={handleDelete}
               />
             ))}
@@ -185,6 +204,21 @@ export function TransactionsView() {
         open={modalOpen}
         onClose={() => setModalOpen(false)}
         onAdd={addTransaction}
+      />
+      <ConfirmationDialog
+        open={pendingArchive !== null}
+        title={t.archive.confirmArchiveTitle}
+        body={t.archive.confirmArchiveBody}
+        confirmLabel={t.common.confirm}
+        cancelLabel={t.common.cancel}
+        closeLabel={t.common.close}
+        icon={Archive}
+        onClose={() => setPendingArchive(null)}
+        onConfirm={() => {
+          if (!pendingArchive) return;
+          archiveTransaction(pendingArchive.id);
+          setPendingArchive(null);
+        }}
       />
     </>
   );

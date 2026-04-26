@@ -1,4 +1,6 @@
 import type { BackupErrorCode } from "@/lib/backup-error-codes";
+import enArchive from "@/lib/locales/en.json";
+import ruArchive from "@/lib/locales/ru.json";
 
 export const SUPPORTED_LOCALES = ["en", "ru"] as const;
 export type AppLocale = (typeof SUPPORTED_LOCALES)[number];
@@ -54,6 +56,7 @@ const en = {
     menu: "Menu",
     dashboard: "Dashboard",
     transactions: "Transactions",
+    archive: enArchive.sidebar.archive,
     templates: "Templates",
     settings: "Settings",
   },
@@ -62,6 +65,7 @@ const en = {
     maximize: "Maximize",
     close: "Close",
   },
+  common: enArchive.common,
   dashboard: {
     title: "Overview",
     subtitle: "Account summary and spending trend",
@@ -95,6 +99,7 @@ const en = {
     history: "History",
     empty: "No transactions match your filters",
   },
+  archive: enArchive.archive,
   transactionRow: {
     deleteAria: "Delete transaction",
   },
@@ -212,6 +217,7 @@ const ru: typeof en = {
     menu: "Меню",
     dashboard: "Дашборд",
     transactions: "Транзакции",
+    archive: ruArchive.sidebar.archive,
     templates: "Шаблоны",
     settings: "Настройки",
   },
@@ -220,6 +226,7 @@ const ru: typeof en = {
     maximize: "Развернуть",
     close: "Закрыть",
   },
+  common: ruArchive.common,
   dashboard: {
     title: "Обзор",
     subtitle: "Сводка по счетам и динамика расходов",
@@ -253,6 +260,7 @@ const ru: typeof en = {
     history: "История",
     empty: "Нет операций по заданным условиям",
   },
+  archive: ruArchive.archive,
   transactionRow: {
     deleteAria: "Удалить транзакцию",
   },

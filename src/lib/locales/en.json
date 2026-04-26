@@ -1,0 +1,28 @@
+{
+  "sidebar": {
+    "archive": "Archive"
+  },
+  "common": {
+    "close": "Close",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },
+  "archive": {
+    "title": "Archive",
+    "subtitle": "Transactions older than 45 days are moved here automatically",
+    "summary": "Archived transactions",
+    "empty": "No archived transactions",
+    "sendToArchive": "Archive",
+    "restore": "Restore",
+    "delete": "Delete",
+    "clearAll": "Clear archive",
+    "confirmDeleteAllTitle": "Are you sure?",
+    "confirmDeleteAllBody": "This action is irreversible.",
+    "confirmArchiveTitle": "Move transaction to archive?",
+    "confirmArchiveBody": "Are you sure you want to move this transaction to archive?",
+    "confirmRestoreTitle": "Restore transaction?",
+    "confirmRestoreBody": "Are you sure you want to return this transaction from archive? It will be included in the balance and charts again.",
+    "countLabel": "{count} items",
+    "archivedOn": "Archived after 45 days"
+  }
+}

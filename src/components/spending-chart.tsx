@@ -17,12 +17,12 @@ import { formatMoneyCompact } from "@/lib/format-money";
 import { useI18n } from "@/lib/use-i18n";
 
 export function SpendingChart() {
-  const { transactions } = useFinance();
+  const { activeTransactions } = useFinance();
   const { locale, currency } = useSettings();
   const { t } = useI18n();
   const data = useMemo(
-    () => buildLast30DaysSeries(transactions, locale),
-    [transactions, locale],
+    () => buildLast30DaysSeries(activeTransactions, locale),
+    [activeTransactions, locale],
   );
 
   return (
