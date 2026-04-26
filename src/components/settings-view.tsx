@@ -224,9 +224,7 @@ export function SettingsView() {
           </div>
         </GlassCard>
 
-        {/* Язык и Валюта */}
         <GlassCard className="relative z-30 grid gap-4 p-5 shadow-md sm:grid-cols-2">
-          {/* Кастомный селект Языка */}
           <div className="relative">
             <span className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
               {t.settings.language}
@@ -248,7 +246,6 @@ export function SettingsView() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -4 }}
                     transition={{ duration: 0.12 }}
-                    // ✅ backdrop-blur удалён — заменён translateZ(0) + solid bg
                     style={{ transform: "translateZ(0)", willChange: "opacity" }}
                     className="absolute z-50 mt-2 w-full overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-xl dark:border-zinc-700 dark:bg-zinc-900"
                   >
@@ -270,7 +267,6 @@ export function SettingsView() {
             </AnimatePresence>
           </div>
 
-          {/* Кастомный селект Валюты */}
           <div className="relative">
             <span className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
               {t.settings.currency}
@@ -292,7 +288,6 @@ export function SettingsView() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -4 }}
                     transition={{ duration: 0.12 }}
-                    // ✅ backdrop-blur удалён — заменён translateZ(0) + solid bg
                     style={{ transform: "translateZ(0)", willChange: "opacity" }}
                     className="absolute z-50 mt-2 rounded-xl border border-zinc-200 bg-white/70 backdrop-blur-xl dark:border-zinc-800 dark:bg-zinc-900/70"
                   >
@@ -315,7 +310,6 @@ export function SettingsView() {
           </div>
         </GlassCard>
 
-        {/* Формат времени */}
         <GlassCard className="flex items-center justify-between gap-4 p-5 shadow-md">
           <div className="flex min-w-0 items-center gap-3">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet-500/10">
@@ -338,7 +332,6 @@ export function SettingsView() {
           />
         </GlassCard>
 
-        {/* Автозапуск */}
         <GlassCard className="flex items-center justify-between gap-4 p-5 shadow-md">
           <div className="flex min-w-0 items-center gap-3">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10">
@@ -360,7 +353,6 @@ export function SettingsView() {
           />
         </GlassCard>
 
-        {/* Данные и бэкап */}
         <div>
           <p className="mb-2 px-0.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
             {t.settings.dataSection}
