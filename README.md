@@ -25,10 +25,7 @@
 * **Charts:** [Recharts](https://recharts.org/)
 * **Icons:** [Lucide React](https://lucide.dev/)
 
----
-## ⛓️‍💥 Known issues and future work
 
-* A transaction archive will be added in the future (Transactions after 30 days are not included in the balance)
 
 ---
 ## 📸Screenshots
